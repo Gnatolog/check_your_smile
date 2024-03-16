@@ -72,6 +72,7 @@ class Cuter(Worker):
 
     # region method
 
+
     def front_cut(self):
         pass
 
