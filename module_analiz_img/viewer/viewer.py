@@ -22,6 +22,7 @@ class Vieweresulter:
         self.template['result_lateral_vert'] = ''
         self.template['result_lateral_sag'] = ''
         self.template['preliminary diagnosis'] = ''
+        self.template['recommendation'] = ''
         return self.template
 
     # endregion
