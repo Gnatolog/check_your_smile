@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %} Проверь свой прикус {% endblock %}
+
+{% block content %}
+
+    <section class="forms">
+        <h1>Войти в систему</h1>
+            {% if form.errors %}
+            <p class="error-login">
+                Ваше имя пользователя и пароль не совпали.
+                Пожалуйста повторите попытку
+            </p>
+            {% else %}
+            <p class="text-login">
+                Введите данные для входа в систему или
+                зарегистрируйтесь
+            </p>
+            {% endif %}
+            <div class="login-form">
+                <form action="{% url 'login' %}" method="post"> <!--Перенаправление на страницу входа -->
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}"> <!-- Скрытый параметр входа-->
+                    <p><input type="submit" value="Войти"></p>
+                </form>
+                <p class="text-login">
+                    <a
+                        href="{% url 'password_reset' %}">
+                        Сбросить пароль
+                    </a>
+                    <a
+                        href="{% url 'register' %}">
+                        Регистрация
+                    </a>
+                </p>
+            </div>
+
+    </section>
+
+{% endblock %}
+
+
