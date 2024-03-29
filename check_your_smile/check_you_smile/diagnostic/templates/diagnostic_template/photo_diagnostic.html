@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} {{diagnostic.type}} {% endblock %}
+
+{% block content %}
+    <h1>Поехали</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form>
+        {% if img_obj %}
+            <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+            <img src="{{ img_obj.image.url}}" alt="connect">
+        {% endif %}
+{% endblock %}

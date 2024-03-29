@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+<!--    <link rel="stylesheet" href="{% static 'css/base.css' %}">-->
+</head>
+<body>
+    <header class="header_start_page header">
+        {% if request.user.is_authenticated %}
+            <div class="navi-menu">
+                <a class="link-navi-menu" href="{% url 'dashboard' %}">Стартовая панель</a>
+                <a class="link-navi-menu" href="#">Диагностика</a>
+                <a class="link-navi-menu" href="/result/">Результат</a>
+            </div>
+            <div class="logo-header">
+                <img src="#" alt="логотип">
+            </div>
+            <span class="user">
+                {{ request.user.first_name|default:request.user.username }},
+                <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Выйти</button>
+                </form>
+            </span>
+        {% endif %}
+
+    </header>
+    <main class="main_start_page">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="footer">
+        &copy;Все права защищены
+        <p class="year_found">2024</p>
+    </footer>
+</body>
+</html>

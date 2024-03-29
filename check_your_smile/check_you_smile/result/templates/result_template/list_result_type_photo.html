@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Результат {% endblock %}
+
+{% block content %}
+<h1>Результат </h1>
+    <div class="items-diagnostic">
+
+            {% for diagnostic in all_photo_diagnostics %}
+                    <p class="text-item-diagnostic">{{ diagnostic.date }}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="choice" value="{{ diagnostic.name }}">
+                        <button type="submit">
+                        Посмотреть результата</p></button>
+
+                    </form>
+
+
+            {% endfor %}
+
+    </div>
+
+{% endblock %}

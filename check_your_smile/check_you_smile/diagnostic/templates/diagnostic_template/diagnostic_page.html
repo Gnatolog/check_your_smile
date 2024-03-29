@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Диагностика Прикуса {% endblock %}
+
+{% block content %}
+    <h1 class="title_diagnostics">Выберите вид диагностики</h1>
+    <div class="items-diagnostic">
+        {% for diagnostic in diagnostics %}
+            <h2 class="title-item">{{diagnostic.type}}</h2>
+            <img class="img-item-diagnostic-img"
+                 src="{{ diagnostic.image.url }}"
+                 alt="диагностика по фотографии" width="240">
+            <p class="text-item-diagnostic">{{ diagnostic.description }}</p>
+            {% if diagnostic.name == 'pho' %}
+                <a class="link-diagnostic" href="photo-diagnostic/">Выбрать</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
