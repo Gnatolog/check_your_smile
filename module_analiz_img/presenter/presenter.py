@@ -19,6 +19,7 @@ class Startprocession:
         self.id_user = id_user
         self.task_id = task_id
         self.result_analiz = {}
+        self.evaluation_result = {}
 
     # endregion
 
@@ -39,24 +40,24 @@ class Startprocession:
 
         # region Preprocessing
 
-        # preprocessing = model.Preprocessing('Beloshin_front.JPG',
-        #                                     'Beloshin_lateral.JPG',
-        #                                     '/home/gnatolog/check_your_smile/'
-        #                                     'module_analiz_img/temp_storage/',)
-        # preprocessing.noise_correction()
-        # preprocessing.aligned_brightness()
-        # preprocessing.contrast_correction()
-        # preprocessing.convert_in_black_white()
-        # preprocessing.check_dent()
+        preprocessing = model.Preprocessing('Beloshin_front.JPG',
+                                            'Beloshin_lateral.JPG',
+                                            '/home/gnatolog/check_your_smile/'
+                                            'module_analiz_img/temp_storage/',)
+        preprocessing.noise_correction()
+        preprocessing.aligned_brightness()
+        preprocessing.contrast_correction()
+        preprocessing.convert_in_black_white()
+        preprocessing.check_dent()
 
         # endregion
 
         # region Cut image
 
-        # cute = model.Cuter('/home/gnatolog/check_your_smile/'
-        #                    'module_analiz_img/temp_storage/')
-        #
-        # cute.cut_image()
+        cute = model.Cuter('/home/gnatolog/check_your_smile/'
+                           'module_analiz_img/temp_storage/')
+
+        cute.cut_image()
 
         # endregion
 
@@ -80,16 +81,17 @@ class Startprocession:
 
         # endregion
 
-        # region Save result
+        self.evaluation_result = interprit.get_result()
 
-        result_file = Path.cwd() / 'result_diagnostic'/f'result_diagnostic_{self.name_user}.json'
-        with open(result_file, 'w', encoding='utf-8') as fr:
-            json.dump(interprit.get_result(), fr, indent=2, ensure_ascii=False)
-
-        # endregion
-
+        # # region Save result
+        #
+        # result_file = Path.cwd() / 'result_diagnostic'/f'result_diagnostic_{self.name_user}.json'
+        # with open(result_file, 'w', encoding='utf-8') as fr:
+        #     json.dump(interprit.get_result(), fr, indent=2, ensure_ascii=False)
+        #
+        # # endregion
 
     def get_result(self):
-        pass
+        return self.evaluation_result
 
     # endregion
