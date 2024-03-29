@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Результаты исследования {% endblock %}
+
+{% block content %}
+<h1>Результаты исследвания</h1>
+    <div class="items-diagnostic">
+        {% for diagnostic in diagnostics %}
+            <h2 class="title-item">{{diagnostic.type}}</h2>
+            <img class="img-item-diagnostic-img"
+                 src="{{ diagnostic.image.url }}"
+                 alt="диагностика по фотографии" width="240">
+            <p class="text-item-diagnostic">{{ diagnostic.description }}</p>
+            {% if diagnostic.name == 'pho' %}
+                <a class="link-diagnostic" href="list-result-type-photo/">Выбрать</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

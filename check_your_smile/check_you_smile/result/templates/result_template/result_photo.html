@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Результат {% endblock %}
+
+{% block content %}
+<h1>Результат Диагностики </h1>
+
+    <div class="items-diagnostic">
+        {% for result in result_diagnostic %}
+            <p class="text-item-diagnostic">{{ result.result_diagnostic }}
+        {% endfor %}
+    </div>
+
+{% endblock %}

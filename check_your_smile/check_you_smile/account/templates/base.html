@@ -12,8 +12,8 @@
         {% if request.user.is_authenticated %}
             <div class="navi-menu">
                 <a class="link-navi-menu" href="{% url 'dashboard' %}">Стартовая панель</a>
-                <a class="link-navi-menu" href="#">Диагностика</a>
-                <a class="link-navi-menu" href="#">Результат</a>
+                <a class="link-navi-menu" href="/diagnostic/">Диагностика</a>
+                <a class="link-navi-menu" href="/result/">Результат</a>
             </div>
             <div class="logo-header">
                 <img src="#" alt="логотип">
