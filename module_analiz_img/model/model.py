@@ -693,7 +693,9 @@ class Resulter:
 
         self.result_diagnostic['preliminary diagnosis'] = preliminary_diagnosis_result
         self.result_diagnostic['recommendation'] = recommendation
-        print('Diagnostic complete')
+
+        #TODO убрать после релиза
+        # print('Diagnostic complete')
 
     def get_result(self):
         return self.result_diagnostic
