@@ -50,6 +50,7 @@ class AllDiagnostic(models.Model):
 
 class PhotoDiagnostic(AllDiagnostic):
 
+
     name = AllDiagnostic.name
 
     date = AllDiagnostic.date
@@ -58,10 +59,10 @@ class PhotoDiagnostic(AllDiagnostic):
 
     result_diagnostic = models.JSONField(blank=True, default=dict)
 
-    image_lateral = models.ImageField(upload_to=f'user_img/%Y.%m.%d.%H.%M',
+    image_lateral = models.ImageField(upload_to=f'user_img/%Y.%M.%S/lateral',
                                       default=None)
 
-    image_frontal = models.ImageField(upload_to=f'user_img/%Y.%m.%d.%H.%M',
+    image_frontal = models.ImageField(upload_to=f'user_img/%Y.%M.%S/frontal',
                                       default=None)
 
     def load_json(self, json_file):
