@@ -14,10 +14,14 @@ class Startprocession:
 
     # region field
 
-    def __init__(self, name_user: str, id_user: int, task_id: str):
+    def __init__(self, name_user: str, id_user: int, task_id: str,
+                 path: str, name_file_frontal: str, name_file_lateral):
         self.name_user = name_user
         self.id_user = id_user
         self.task_id = task_id
+        self.path = path
+        self.name_file_frontal = name_file_frontal
+        self.name_file_lateral = name_file_lateral
         self.result_analiz = {}
         self.evaluation_result = {}
 
@@ -37,13 +41,15 @@ class Startprocession:
         # load_file = model.Loader()   # загрузка файла из хранилища
 
         # endregion
-
+        print(self.path)
+        print(self.name_file_frontal)
+        print(self.name_file_lateral)
         # region Preprocessing
-
-        preprocessing = model.Preprocessing('Beloshin_front.JPG',
-                                            'Beloshin_lateral.JPG',
-                                            '/home/gnatolog/check_your_smile/'
-                                            'module_analiz_img/temp_storage/',)
+        preprocessing = model.Preprocessing(self.name_file_frontal,
+                                            self.name_file_lateral,
+                                            path_field_front=f'temp_storage/user_img/{self.path}/frontal/',
+                                            path_field_lateral=f'temp_storage/user_img/{self.path}/lateral/'
+                                            )
         preprocessing.noise_correction()
         preprocessing.aligned_brightness()
         preprocessing.contrast_correction()
@@ -54,8 +60,8 @@ class Startprocession:
 
         # region Cut image
 
-        cute = model.Cuter('/home/gnatolog/check_your_smile/'
-                           'module_analiz_img/temp_storage/')
+        cute = model.Cuter(path_file_front=f'temp_storage/user_img/{self.path}/frontal/',
+                           path_file_lateral=f'temp_storage/user_img/{self.path}/lateral/')
 
         cute.cut_image()
 
@@ -63,8 +69,8 @@ class Startprocession:
 
         # region Analiz
 
-        analiz = model.Analyzer('/home/gnatolog/check_your_smile/'
-                                'module_analiz_img/temp_storage/')
+        analiz = model.Analyzer(path_file_lateral=f'temp_storage/user_img/{self.path}/lateral/',
+                                path_file_front=f'temp_storage/user_img/{self.path}/frontal/')
 
         self.result_analiz['front_vert'] = analiz.front_analyze_vert()
         self.result_analiz['front_hor'] = analiz.front_analyze_hor()
@@ -82,6 +88,7 @@ class Startprocession:
         # endregion
 
         self.evaluation_result = interprit.get_result()
+
 
         # # region Save result
         #
