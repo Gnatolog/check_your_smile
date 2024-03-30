@@ -25,7 +25,8 @@ def load_type_result_photo(request):
         ResultDiagnostic.objects.filter(user=request.user.id))
 
     if request.method == 'POST':
-        result_diagnostic = ResultDiagnostic.objects.filter(name='first_diagnostic')
+
+        result_diagnostic = ResultDiagnostic.objects.filter(name=request.POST.get('choice'))
 
         return render(request,
                       'result_template/result_photo.html',
