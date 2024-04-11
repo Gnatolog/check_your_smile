@@ -1,0 +1,132 @@
+@media(max-width:1023px){
+
+    .result-content {
+        width:unset;
+    }
+    .navi-menu{
+        gap:50px;
+        flex-wrap:wrap;
+        flex-direction: row;
+    }
+    .title-board{
+        font-size:36px;
+    }
+    .side-bar{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 9;
+    margin-top: 0;
+    }
+
+    .side-bar-icon{
+        width:80px;
+    }
+    .title-item{
+        font-size: 25px;
+    }
+
+    .text-item-diagnostic{
+        width:400px;
+        font-size:20px;
+    }
+
+    .image-required{
+        margin-left:unset;
+        gap:45px;
+    }
+
+    .text-item-diagnostic{
+        width: 550px;
+        text-align:center;
+    }
+
+    .description-image{
+        grid-column-start: unset;
+        grid-row-start: 1;
+        text-align: -webkit-center;
+        width: 500px;
+    }
+
+
+
+    .item-image-diagnostic-button{
+        grid-row-start: 3;
+    }
+
+    .title-load-diagnostic {
+        width: 500px;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(2) > label {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(3) > label {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(4) > label {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
+
+    }
+
+    .button-load-diagnostic {
+        width: 220px;
+    }
+
+    .forms-load-diagnostic{
+        margin-top: 20px;
+    }
+
+    .side-bar-diagnostic{
+        margin-top: 80px;
+    }
+    .forms-load-diagnostic{
+        margin:100px;
+    }
+
+    .title-load-diagnostic {
+        width: 320px;
+    }
+
+    .form-diagnostic-load{
+        margin:30px;;
+        margin-top:45px;
+    }
+
+    .img-item-diagnostic-img{
+        width:330px;
+    }
+
+    .items-result{
+        margin-bottom: 114px;
+    }
+
+    .result-forms{
+        width:500px;
+    }
+
+    .result-diagnostic{
+        width:unset;
+    }
+
+    .area-field{
+        width:unset;
+    }
+
+    .text-area-field{
+        width:unset;
+    }
+
+}
+

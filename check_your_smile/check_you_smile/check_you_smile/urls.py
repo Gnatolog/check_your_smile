@@ -24,11 +24,11 @@ urlpatterns = [
     path('', include('account.urls')),  # start page
     path('diagnostic/', include('diagnostic.urls')),
     path('result/', include('result.urls'))
-]
-
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # реализуем раздачу файлов через джанго только для разработки
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT)
+

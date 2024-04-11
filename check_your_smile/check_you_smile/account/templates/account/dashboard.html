@@ -1,8 +1,47 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %} Стартовая панель {% endblock %}
 
 {% block content %}
-    <h1 class="title-start-board">Стартовая панель</h1>
-    <p class="text-start-board">Добро пожаловать</p>
+    <h1 class="title-board title-home-page">Проверь Свой Прикус</h1>
+    <p class="text-board text-home-page">Добро пожаловать</p>
+    {% if request.user.is_authenticated %}
+        <section class="navi-menu">
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="{% url 'dashboard' %}">
+                    <img class="icon-img" src="{% static 'img/icon_home_page.svg' %}">
+                    <p class="text-link-menu">Главная</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/diagnostic/">
+                    <img class="icon-img" src="{% static 'img/icon_diagnostic.svg' %}">
+                    <p class="text-link-menu">Диагностика</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/result/">
+                    <img class="icon-img" src="{% static 'img/icon_result_diagnostic.svg' %}">
+                    <p class="text-link-menu">Результаты</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="button-exit" type="submit">
+                            <img class="icon-img"  src="{% static 'img/icon_log_out.svg' %}">
+                            <p class="text-link-menu">Выйти</p>
+                        </button>
+                    </form>
+
+            </div>
+
+        </section>
+    {% endif %}
 {% endblock %}

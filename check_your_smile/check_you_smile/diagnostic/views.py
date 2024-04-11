@@ -3,6 +3,8 @@ from .models import Diagnostic, PhotoDiagnostic
 from .forms import PhotoDiagnosticForm, ResultDiagnosticForm
 from result.models import ResultDiagnostic
 import requests
+import asyncio
+import aiohttp
 
 
 # Create your views here.
@@ -19,6 +21,13 @@ def load_diagn(request, diagnostic_slug=None):
                   'diagnostic_template/diagnostic_page.html',
                   context={'diagnostic': diagnostic,
                            'diagnostics': diagnostics})
+
+
+
+
+
+
+
 
 
 def get_module_analiz(name, path,

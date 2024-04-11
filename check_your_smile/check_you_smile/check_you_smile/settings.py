@@ -126,7 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR / 'static'  # add static
+STATIC_ROOT = BASE_DIR / 'static'  # add static
+
 
 MEDIA_URL = 'media/'  # базовый URl по которому раздаются закачанные медиа файлы
 MEDIA_ROOT = BASE_DIR / 'media'  # локальный путь по которому файлы находятся

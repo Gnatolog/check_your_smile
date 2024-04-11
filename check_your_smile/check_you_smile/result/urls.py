@@ -11,5 +11,6 @@ urlpatterns = [
          name='result_type'),
 
     path('result-photo/', views.load_type_result_photo,
-         name='result_photo')
+         name='result_photo'),
+
 ]

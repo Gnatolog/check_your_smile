@@ -1,0 +1,27 @@
+/*html*/
+/*{*/
+/*   background: #d13232;*/
+/*}*/
+h1{
+    color: #e91515;
+    font-size:50px;
+
+}
+#particles-js
+{
+  position: fixed;
+  z-index: 1;
+  left:0;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg,#F24645  ,#4F00BC );
+}
+
+.link-navi-menu{
+    color:cadetblue;
+}
+a{
+    text-decoration: none;
+    color:slateblue;
+}
