@@ -10,11 +10,6 @@
 <body>
     <header class="header_start_page header">
         {% if request.user.is_authenticated %}
-            <div class="navi-menu">
-                <a class="link-navi-menu" href="{% url 'dashboard' %}">Стартовая панель</a>
-                <a class="link-navi-menu" href="#">Диагностика</a>
-                <a class="link-navi-menu" href="/result/">Результат</a>
-            </div>
             <div class="logo-header">
                 <img src="#" alt="логотип">
             </div>
@@ -31,6 +26,7 @@
     <main class="main_start_page">
         {% block content %}
         {% endblock %}
+
     </main>
     <footer class="footer">
         &copy;Все права защищены

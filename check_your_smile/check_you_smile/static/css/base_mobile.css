@@ -1,0 +1,70 @@
+@media(max-width:767px){
+
+    .form-field{
+       align-items:center;
+    }
+
+    .for-field-reg{
+    align-items:flex-end;
+    }
+
+    .form-reg-reg{
+    margin-top:10vh;
+    }
+
+    .form-field p{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    }
+
+    .navi-menu{
+        margin-bottom: 45px;
+        gap:50px;
+        flex-wrap:nowrap;
+        flex-direction: column;
+        height:unset;
+    }
+
+    .title-board{
+        font-size: 35px;
+        margin-top: 30px;
+    }
+
+    .text-board {
+        margin-bottom: 45px;
+    }
+
+}
+
+@media(max-width: 375px){
+
+    .forms-registration{
+        width: 300px;
+    }
+
+    .title-board{
+        font-size: 24px;
+        margin-top: 30px;
+    }
+
+    .text-board {
+        font-size: 18px;
+    }
+    .text-link-menu{
+        margin-top:5px;
+        font-size:16px;
+    }
+
+    .navi-menu{
+        gap:25px;
+    }
+    .icon-img{
+        width:45vw;
+    }
+
+}

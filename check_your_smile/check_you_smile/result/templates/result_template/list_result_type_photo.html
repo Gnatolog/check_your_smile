@@ -1,25 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
 
-
-{% block title %} Результат {% endblock %}
+{% block title %}Результаты диагностики по фотографии {% endblock %}
 
 {% block content %}
-<h1>Результат </h1>
-    <div class="items-diagnostic">
+    <script>
+        var element = document.querySelector('.main');
+        element.classList.add('main-board');
+        element.classList.add('main-result');
+    </script>
 
-            {% for diagnostic in all_photo_diagnostics %}
-                    <p class="text-item-diagnostic">{{ diagnostic.date }}
-                    <form method="post">
+    <h1 class="title title-board title-result">Ваши результаты</h1>
+
+    {% if request.user.is_authenticated %}
+        <section  class="navi-menu side-bar " >
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="{% url 'dashboard' %}">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_home_page.svg' %}">
+                    <p class="text-link-menu text-side-link">Главная</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/diagnostic/">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_diagnostic.svg' %}">
+                    <p class="text-link-menu text-side-link">Диагностика</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/result/">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_result_diagnostic.svg' %}">
+                    <p class="text-link-menu text-side-link">Результаты</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+
+                    <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
-                        <input type="hidden" name="choice" value="{{ diagnostic.name }}">
-                        <button type="submit">
-                        Посмотреть результата</p></button>
-
+                        <button class="button-exit" type="submit">
+                            <img class="icon-img side-bar-icon"  src="{% static 'img/icon_log_out.svg' %}">
+                            <p class="text-link-menu text-side-link">Выйти</p>
+                        </button>
                     </form>
 
+            </div>
 
-            {% endfor %}
-
-    </div>
+        </section>
+    {% endif %}
+    <section class="content result-content ">
+        <div class="items-diagnostic items-result">
+                {% for diagnostic in all_photo_diagnostics %}
+                        <p class="text-item-diagnostic result-text-diagnostic">{{ diagnostic.date }}
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="choice" value="{{ diagnostic.name }}">
+                            <button class="button-result" type="submit">
+                            Посмотреть результата</p></button>
+                        </form>
+                {% endfor %}
+        </div>
+    </section>
 
 {% endblock %}

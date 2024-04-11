@@ -1,16 +1,102 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} {{diagnostic.type}} {% endblock %}
 
 {% block content %}
-    <h1>Поехали</h1>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Upload</button>
-        </form>
-        {% if img_obj %}
-            <h3>Succesfully uploaded : {{img_obj.title}}</h3>
-            <img src="{{ img_obj.image.url}}" alt="connect">
-        {% endif %}
+    <script>
+        var element = document.querySelector('.main');
+        element.classList.add('main-board');
+
+    </script>
+
+    <h1 class="title title-board">Диагностика по фотографии</h1>
+
+    {% if request.user.is_authenticated %}
+        <section  class="navi-menu side-bar side-bar-diagnostic " >
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="{% url 'dashboard' %}">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_home_page.svg' %}">
+                    <p class="text-link-menu text-side-link">Главная</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/diagnostic/">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_diagnostic.svg' %}">
+                    <p class="text-link-menu text-side-link">Диагностика</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/result/">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_result_diagnostic.svg' %}">
+                    <p class="text-link-menu text-side-link">Результаты</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="button-exit" type="submit">
+                            <img class="icon-img side-bar-icon"  src="{% static 'img/icon_log_out.svg' %}">
+                            <p class="text-link-menu text-side-link">Выйти</p>
+                        </button>
+                    </form>
+
+            </div>
+
+        </section>
+    {% endif %}
+    <section class="content diagnostic-content">
+        <p class="text-item-diagnostic description-diagnostic">Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Cum dolore doloremque inventore
+            ipsum maxime nostrum perspiciatis quidem sed sit? Accusamus
+            at cupiditate distinctio, fuga minima modi nam numquam
+            odio perferendis possimus! A aliquid aperiam ipsum,
+            minus molestias officia omnis possimus soluta tempora
+            ut vel vero voluptas voluptatibus. Aliquid asperiores
+            at autem blanditiis consectetur cum dignissimos dolorum error.
+        </p>
+        <h2 class="title-item">Требования к фотографиям</h2>
+        <div class="image-required">
+
+            <div class="item-image-diagnostic-top item-image-diagnostic">
+                <img class="example-img" src="{% static 'img/frontal_photo.png' %}"
+                 alt="example frontal image">
+                <p class="text-image">Фронатльное фото</p>
+            </div>
+
+            <div class="item-image-diagnostic-button item-image-diagnostic">
+                <img class="example-img" src="{% static 'img/lateral_photo.png' %}"
+                 alt="example lateral image">
+                <p class="text-image">Боковое фото</p>
+            </div>
+
+            <p class="text-item-diagnostic description-image">
+                    Для диагностики по фотографии не обходимо загузить
+                    две фотографии одна фотография делается спереди и
+                     называется фронтальной вторая фогография делается
+                    в боковой проекции и называется боковой для получения
+                    качественного рзультата не обходимо использовать ретракторы
+                    полости рта во время фотогорафии а также делать фотографии в
+                    хорошо освещенном помещении
+            </p>
+        </div>
+        <div class="forms-load-diagnostic">
+            <h2 class="title-item title-load-diagnostic" >Загрузить фото и отправить на диагностику</h2>
+            <form class="form-diagnostic-load" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button-load-diagnostic" type="submit">Отправить</button>
+            </form>
+            {% if img_obj %}
+                <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+                <img src="{{ img_obj.image.url}}" alt="connect">
+            {% endif %}
+
+        </div>
+    </section>
 {% endblock %}

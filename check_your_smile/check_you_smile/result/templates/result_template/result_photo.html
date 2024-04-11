@@ -1,14 +1,116 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Результат {% endblock %}
 
 {% block content %}
-<h1>Результат Диагностики </h1>
+    <script>
+        var element = document.querySelector('.main');
+        element.classList.add('main-board');
+        element.classList.add('main-result');
+        element.classList.add('main-result-form');
 
-    <div class="items-diagnostic">
-        {% for result in result_diagnostic %}
-            <p class="text-item-diagnostic">{{ result.result_diagnostic }}
-        {% endfor %}
-    </div>
+    </script>
+    {% if request.user.is_authenticated %}
+        <section  class="navi-menu side-bar side-bar-result " >
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="{% url 'dashboard' %}">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_home_page.svg' %}">
+                    <p class="text-link-menu text-side-link">Главная</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/diagnostic/">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_diagnostic.svg' %}">
+                    <p class="text-link-menu text-side-link">Диагностика</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/result/">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_result_diagnostic.svg' %}">
+                    <p class="text-link-menu text-side-link">Результаты</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="button-exit" type="submit">
+                            <img class="icon-img side-bar-icon"  src="{% static 'img/icon_log_out.svg' %}">
+                            <p class="text-link-menu text-side-link">Выйти</p>
+                        </button>
+                    </form>
+
+            </div>
+
+        </section>
+    {% endif %}
+    <section class="content content-result">
+        <div class="result-forms">
+                <div class="titel-field-result-form">
+                    <p class="text-field">Дата диагностики: {{ date }}</p>
+                    <p class="text-field">Имя: {{ user_name }}</p>
+                    <h2 class="title-result-form">Результат диагностики</h2>
+                </div>
+
+                <div class="result-diagnostic">
+                    <div class="field-result-form">
+                        <h2 class="title-form-field">Результат исследования боковой фотографии:</h2>
+
+                        <div class="area-field" >
+                            <p class="text-area-field"> {{ result_lateral_sag }} </p>
+                            <p class="text-area-field"> {{ result_lateral_vert }} </p>
+
+                        </div>
+
+                    </div>
+                    <div class="field-result-form">
+                        <h2 class="title-form-field" >Результат исследования фронтальной фотографии</h2>
+                        <div class="area-field">
+                            <p class="text-area-field"> {{ result_front_hor }}</p>
+                            <p class="text-area-field">  {{ result_front_vertical }} </p>
+                        </div>
+
+                    </div>
+                    <div class="field-result-form">
+                        <h2 class="title-form-field">Предворительный диагноз</h2>
+                        <div class="area-field">
+
+                            <p class="text-area-field">{{  preliminary_diagnosis }}</p>
+
+                        </div>
+
+                    </div>
+                    <div  class="field-result-form">
+                        <h2 class="title-form-field">Рекомендации</h2>
+
+                        <div class="area-field">
+                            <p class="text-area-field">{{  recommendation }}</p>
+                        </div>
+
+                    </div>
+
+                    <form action="{% url 'result_type' %}" method="POST">
+                            {% csrf_token %}
+                           <input type="hidden" name="pdf" value="1">
+                          <button class="button_send_pdf"> Отправить</button>
+                    </form>
+
+
+
+
+                        
+                </div>
+        </div>
+
+
+
+    </section>
+
+
 
 {% endblock %}

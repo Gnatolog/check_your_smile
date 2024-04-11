@@ -1,19 +1,65 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Результаты исследования {% endblock %}
 
 {% block content %}
-<h1>Результаты исследвания</h1>
-    <div class="items-diagnostic">
-        {% for diagnostic in diagnostics %}
-            <h2 class="title-item">{{diagnostic.type}}</h2>
-            <img class="img-item-diagnostic-img"
-                 src="{{ diagnostic.image.url }}"
-                 alt="диагностика по фотографии" width="240">
-            <p class="text-item-diagnostic">{{ diagnostic.description }}</p>
-            {% if diagnostic.name == 'pho' %}
-                <a class="link-diagnostic" href="list-result-type-photo/">Выбрать</a>
-            {% endif %}
-        {% endfor %}
-    </div>
+    <script>
+        var element = document.querySelector('.main');
+        element.classList.add('main-board');
+        element.classList.add('main-result');
+
+    </script>
+    <h1 class="title title-board">Результаты исследвания</h1>
+    {% if request.user.is_authenticated %}
+        <section  class="navi-menu side-bar " >
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="{% url 'dashboard' %}">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_home_page.svg' %}">
+                    <p class="text-link-menu text-side-link">Главная</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/diagnostic/">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_diagnostic.svg' %}">
+                    <p class="text-link-menu text-side-link">Диагностика</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+                <a class="link-navi-menu" href="/result/">
+                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_result_diagnostic.svg' %}">
+                    <p class="text-link-menu text-side-link">Результаты</p>
+                </a>
+            </div>
+
+            <div class="item-menu">
+
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="button-exit" type="submit">
+                            <img class="icon-img side-bar-icon"  src="{% static 'img/icon_log_out.svg' %}">
+                            <p class="text-link-menu text-side-link">Выйти</p>
+                        </button>
+                    </form>
+
+            </div>
+
+        </section>
+    {% endif %}
+    <section class="content content-result">
+        <div class="items-diagnostic items-diagnostic-result">
+            {% for diagnostic in diagnostics %}
+                <h2 class="title-item">{{diagnostic.type}}</h2>
+                {% if diagnostic.name == 'pho' %}
+                    <a class="link-diagnostic" href="list-result-type-photo/">Выбрать</a>
+                {% else %}
+                    <a class="link-diagnostic" href="#">Выбрать</a>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

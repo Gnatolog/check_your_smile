@@ -1,0 +1,8 @@
+@media(max-width:1023px){
+    .navi-menu{
+        gap:50px;
+        flex-wrap:wrap;
+        flex-direction: row;
+
+    }
+}
