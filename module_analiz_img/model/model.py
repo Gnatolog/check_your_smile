@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+from utils import start_tread
+import threading
 from pathlib import Path
 
 
@@ -21,20 +23,9 @@ class Worker:
     # endregion
 
 
-class Loader(Worker):
-    """
-    Load file from storage
-    Save file on server
-
-    """
-    pass
-
-
 class Preprocessing(Worker):
     """
-
     Preprocessing image for analiz
-    Save file on server
 
     """
 
@@ -57,46 +48,56 @@ class Preprocessing(Worker):
 
     def aligned_brightness(self):
 
-        if self.name_img_front:
-            img_correct_brig = self.result_image_front
-            kernel = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])  # по пиксельно повышаем яркость
-            img_correct_brig = cv2.filter2D(img_correct_brig, -1, kernel)
-            self.result_image_front = img_correct_brig
-            print("Correct bright successful")
+        def brightness_frontal():
 
-        if self.name_img_lateral:
-            img_correct_brig = self.result_image_lateral
-            if img_correct_brig[0][0][1] < 100:
-                kernel = np.array([[-1, -1, -1], [-1, 11, -1], [-1, -1, -1]])  # по пиксельно повышаем яркость
+            if self.name_img_front:
+                img_correct_brig = self.result_image_front
+                kernel = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])  # по пиксельно повышаем яркость
                 img_correct_brig = cv2.filter2D(img_correct_brig, -1, kernel)
+                self.result_image_front = img_correct_brig
+                print("Correct bright successful")
+
+        def brightness_lateral():
+
+            if self.name_img_lateral:
+                img_correct_brig = self.result_image_lateral
+                if img_correct_brig[0][0][1] < 100:
+                    kernel = np.array([[-1, -1, -1], [-1, 11, -1], [-1, -1, -1]])  # по пиксельно повышаем яркость
+                    img_correct_brig = cv2.filter2D(img_correct_brig, -1, kernel)
+                else:
+                    kernel = np.array([[-1, -1, -1], [-1, 10, -1], [-1, -1, -1]])  # по пиксельно повышаем яркость
+                    img_correct_brig = cv2.filter2D(img_correct_brig, -1, kernel)
+                self.result_image_lateral = img_correct_brig
+                print("Correct bright successful")
             else:
-                kernel = np.array([[-1, -1, -1], [-1, 10, -1], [-1, -1, -1]])  # по пиксельно повышаем яркость
-                img_correct_brig = cv2.filter2D(img_correct_brig, -1, kernel)
-            self.result_image_lateral = img_correct_brig
-            print("Correct bright successful")
-        else:
-            raise ValueError("Sorry incorrect data")
+                raise ValueError("Sorry incorrect data")
+
+        start_tread(brightness_frontal, brightness_lateral)
 
     def noise_correction(self):
         print(f'{self.name_img_front= }')
         print(f'{self.name_img_lateral= }')
 
+        def noise_front():
 
-        if self.name_img_front:
-            print(f'{self.path_field_front}{self.name_img_front}')
-            img_correct = cv2.imread(f'{self.path_field_front}/{self.name_img_front}')
-            median_image = cv2.medianBlur(img_correct, 9)  # аргумент ksize указывает на размер фильтра
-            self.result_image_front = median_image
-            print("Correct noise successful")
+            if self.name_img_front:
+                print(f'{self.path_field_front}{self.name_img_front}')
+                img_correct = cv2.imread(f'{self.path_field_front}/{self.name_img_front}')
+                median_image = cv2.medianBlur(img_correct, 9)  # аргумент ksize указывает на размер фильтра
+                self.result_image_front = median_image
+                print("Correct noise successful")
 
-        if self.name_img_lateral:
-            img_correct = cv2.imread(f'{self.path_field_lateral}/{self.name_img_lateral}')
-            median_image = cv2.medianBlur(img_correct, 3)  # аргумент ksize указывает на размер фильтра
-            self.result_image_lateral = median_image
-            print("Correct noise successful")
+        def noise_lateral():
+            if self.name_img_lateral:
+                img_correct = cv2.imread(f'{self.path_field_lateral}/{self.name_img_lateral}')
+                median_image = cv2.medianBlur(img_correct, 3)  # аргумент ksize указывает на размер фильтра
+                self.result_image_lateral = median_image
+                print("Correct noise successful")
 
-        else:
-            raise ValueError("Sorry incorrect data")
+            else:
+                raise ValueError("Sorry incorrect data")
+
+        start_tread(noise_front, noise_lateral)
 
     def contrast_correction(self):
 
@@ -119,6 +120,7 @@ class Preprocessing(Worker):
             raise ValueError("Sorry incorrect data")
 
     def convert_in_black_white(self):
+
         if self.name_img_front:
             img_black_white = cv2.cvtColor(self.result_image_front, cv2.COLOR_BGR2GRAY)
             self.result_image_front = img_black_white
@@ -134,27 +136,32 @@ class Preprocessing(Worker):
 
     def check_dent(self):
 
-        if self.name_img_front:
-            img_check_dent = self.result_image_front
-            for y in range(img_check_dent.shape[0]):
-                for x in range(img_check_dent.shape[1]):
-                    if img_check_dent[y][x] < 180:
-                        img_check_dent[y][x] = 0
+        def check_dent_frontal():
 
-            cv2.imwrite(f'{self.path_field_front}/result_front.jpg', img_check_dent)
-            print('Check dent successful')
+            if self.name_img_front:
+                img_check_dent = self.result_image_front
+                for y in range(img_check_dent.shape[0]):
+                    for x in range(img_check_dent.shape[1]):
+                        if img_check_dent[y][x] < 180:
+                            img_check_dent[y][x] = 0
 
-        if self.name_img_lateral:
-            img_check_dent = self.result_image_lateral
-            for y in range(img_check_dent.shape[0]):
-                for x in range(img_check_dent.shape[1]):
-                    if img_check_dent[y][x] < 180:
-                        img_check_dent[y][x] = 0
+                cv2.imwrite(f'{self.path_field_front}/result_front.jpg', img_check_dent)
+                print('Check dent successful frontal')
 
-            cv2.imwrite(f'{self.path_field_lateral}/result_lateral.jpg', img_check_dent)
-            print('Check dent successful')
-        else:
-            raise ValueError("Sorry incorrect data")
+        def check_dent_lateral():
+            if self.name_img_lateral:
+                img_check_dent = self.result_image_lateral
+                for y in range(img_check_dent.shape[0]):
+                    for x in range(img_check_dent.shape[1]):
+                        if img_check_dent[y][x] < 180:
+                            img_check_dent[y][x] = 0
+
+                cv2.imwrite(f'{self.path_field_lateral}/result_lateral.jpg', img_check_dent)
+                print('Check dent successful lateral')
+            else:
+                raise ValueError("Sorry incorrect data")
+
+        start_tread(check_dent_frontal, check_dent_lateral)
 
     # endregion
 
@@ -177,16 +184,20 @@ class Cuter:
 
     def cut_image(self):
         # Cut front
-        img = cv2.imread(f'{self.path_file_front}result_front.jpg', flags=0)
-        img_resize = cv2.resize(img, (800, 600))  # resize
-        cropped = img_resize[200:400, 200:650]  # обрезка изображения image[y1:y2, x1:x2]
-        cv2.imwrite(f'{self.path_file_front}/result_front.jpg', cropped)
+        def cute_frontal():
+            img = cv2.imread(f'{self.path_file_front}result_front.jpg', flags=0)
+            img_resize = cv2.resize(img, (800, 600))  # resize
+            cropped = img_resize[200:400, 200:650]  # обрезка изображения image[y1:y2, x1:x2]
+            cv2.imwrite(f'{self.path_file_front}/result_front.jpg', cropped)
 
         # Cut lateral
-        img = cv2.imread(f'{self.path_file_lateral}result_lateral.jpg', flags=0)
-        img_resize = cv2.resize(img, (800, 600))  # resize
-        cropped = img_resize[200:420, 130:450]  # обрезка изображения image[y1:y2, x1:x2]
-        cv2.imwrite(f'{self.path_file_lateral}/result_lateral.jpg', cropped)
+        def cute_lateral():
+            img = cv2.imread(f'{self.path_file_lateral}result_lateral.jpg', flags=0)
+            img_resize = cv2.resize(img, (800, 600))  # resize
+            cropped = img_resize[200:420, 130:450]  # обрезка изображения image[y1:y2, x1:x2]
+            cv2.imwrite(f'{self.path_file_lateral}/result_lateral.jpg', cropped)
+
+        start_tread(cute_frontal, cute_lateral)
 
     # endregion
 
@@ -234,7 +245,7 @@ class Analyzer:
                 max_len_upper = max_width_dent_pix[key][0]
                 self.max_len_pix_upper = max_width_dent_pix[key][1]
 
-        # Определить расположение центра центральных резцов
+        # Определить расположение центра центральных резцов нижней челюсти
         # относительно центра центра центральных резцов верхней челюсти
         max_len_pix_lower = 0
         check_central_low = [False]  # список хранит значение находится ли резцы
@@ -417,7 +428,6 @@ class Analyzer:
                          - point_medial_tuber_lower_molar)
 
         return result_analiz
-
     # endregion
 
 
@@ -429,9 +439,8 @@ class Resulter:
     """
 
     # region field
-    def __init__(self, name_user: str, id_user: int, results: dict, template: dict):
+    def __init__(self, name_user: str, results: dict, template: dict):
         self.name_user = name_user
-        self.id_user = id_user
         self.results = results
         self.result_diagnostic = template
         self.eval_data = {}
@@ -440,9 +449,8 @@ class Resulter:
 
     # region method
     def evaluation_data(self):
-        # fill in the name, id
+        # fill in the name
         self.result_diagnostic.update({'name': self.name_user})
-        self.result_diagnostic.update({'id': self.id_user})
 
         # region analiz front vertical
         result_front_vertical = self.results['front_vert']
