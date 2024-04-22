@@ -11,12 +11,43 @@
     .title-board{
         font-size:36px;
     }
+
     .side-bar{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 9;
-    margin-top: 0;
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: unset;
+        margin-top: 0;
+        margin-bottom:45px;
+        top:250px;
+        gap:10px;
+    }
+
+    .side-bar-diagnostic{
+        grid-column-start: 5;
+        grid-column-end: 7;
+        grid-row-start: 1;
+    }
+
+
+    .side-bar-result{
+        grid-column-start: 3;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 9;
+    }
+
+    .main-result{
+        height:unset;
+    }
+
+    .content-result {
+        margin: 25px;
+        grid-column-start: 2;
+        grid-column-end: 13;
+        grid-row-start: 2;
+        grid-row-end: unset;
+        height:unset;
     }
 
     .side-bar-icon{
@@ -29,6 +60,7 @@
     .text-item-diagnostic{
         width:400px;
         font-size:20px;
+        text-align:center;
     }
 
     .image-required{
@@ -36,10 +68,6 @@
         gap:45px;
     }
 
-    .text-item-diagnostic{
-        width: 550px;
-        text-align:center;
-    }
 
     .description-image{
         grid-column-start: unset;
@@ -82,14 +110,16 @@
 
     .button-load-diagnostic {
         width: 220px;
+        margin-bottom:25px;
     }
 
     .forms-load-diagnostic{
         margin-top: 20px;
     }
 
-    .side-bar-diagnostic{
-        margin-top: 80px;
+
+    .side-bar-start-diag{
+        margin-top: 0px;
     }
     .forms-load-diagnostic{
         margin:100px;
@@ -100,7 +130,7 @@
     }
 
     .form-diagnostic-load{
-        margin:30px;;
+        margin:15px;
         margin-top:45px;
     }
 
@@ -113,7 +143,7 @@
     }
 
     .result-forms{
-        width:500px;
+        width:470px;
     }
 
     .result-diagnostic{
@@ -128,5 +158,8 @@
         width:unset;
     }
 
+
 }
+
+
 

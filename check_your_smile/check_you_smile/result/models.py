@@ -6,8 +6,7 @@ from django.db import models
 
 class ResultDiagnostic(models.Model):
     """
-    Клас хранящий результат диагностики и выводящей его
-
+    Класс хранящий результат диагностики
     """
 
     user = models.ForeignKey('auth.User',
@@ -15,7 +14,7 @@ class ResultDiagnostic(models.Model):
 
     date = models.DateTimeField(auto_now_add=True)
 
-    result_diagnostic = models.JSONField(default=dict)
+    result_diagnostic = models.CharField(max_length=255)
 
     type_diagnostic = models.CharField(max_length=50)
 

@@ -24,7 +24,7 @@
 
             <div class="item-menu">
                 <a class="link-navi-menu" href="/diagnostic/">
-                    <img class="icon-img side-bar-icon" src="{% static 'img/icon_diagnostic.svg' %}">
+                    <img class="icon-img side-bar-icon icon-diagnostic" src="{% static 'img/icon_diagnostic.svg' %}">
                     <p class="text-link-menu text-side-link">Диагностика</p>
                 </a>
             </div>
@@ -53,19 +53,23 @@
 
     <section class="content">
 
-        <div class="items-diagnostic">
+        <div class="items-diagnostic items-diagnostic-4k">
             {% for diagnostic in diagnostics %}
-                <h2 class="title-item ">{{diagnostic.type}}</h2>
-                <img class="img-item-diagnostic-img"
-                     src="{{ diagnostic.image.url }}"
-                     alt="диагностика по фотографии" width="240">
-                <p class="text-item-diagnostic">{{ diagnostic.description }}</p>
-                {% if diagnostic.name == 'pho' %}
-                    <a class="link-diagnostic" href="photo-diagnostic/">Выбрать</a>
-                {% else %}
-                    <a class="link-diagnostic" href="#">Выбрать</a>
-                {% endif %}
+                <div class="item-diagnostic item-diagnostic-4k">
+                    <h2 class="title-item ">{{diagnostic.type}}</h2>
+                    <img class="img-item-diagnostic-img"
+                         src="{{ diagnostic.image.url }}"
+                         alt="диагностика по фотографии" width="240">
+                    <p class="text-item-diagnostic">{{ diagnostic.description }}</p>
+                    {% if diagnostic.name == 'pho' %}
+                        <a class="link-diagnostic" href="photo-diagnostic/">Выбрать</a>
+                    {% else %}
+                        <a class="link-diagnostic" href="#">Выбрать</a>
+                    {% endif %}
+
+                </div>
             {% endfor %}
+
         </div>
     </section>
 
