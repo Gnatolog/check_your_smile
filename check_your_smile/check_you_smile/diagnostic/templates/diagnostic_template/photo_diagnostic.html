@@ -51,14 +51,13 @@
         </section>
     {% endif %}
     <section class="content diagnostic-content">
-        <p class="text-item-diagnostic description-diagnostic">Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Cum dolore doloremque inventore
-            ipsum maxime nostrum perspiciatis quidem sed sit? Accusamus
-            at cupiditate distinctio, fuga minima modi nam numquam
-            odio perferendis possimus! A aliquid aperiam ipsum,
-            minus molestias officia omnis possimus soluta tempora
-            ut vel vero voluptas voluptatibus. Aliquid asperiores
-            at autem blanditiis consectetur cum dignissimos dolorum error.
+        <p class="text-item-diagnostic description-diagnostic">
+            Позляет получить предварительную оценку  Вашего прикуса
+            также как это делает врач стоматолог на приёме при
+            осмотре полости рта. Анализ фотографии проводится
+            в трех плоскостях и двух проекциях. В результате Вы
+            получите оценку Вашего прикуса по этим параметрам , а также
+            предварительный диагноз и рекомендации по дальнейшим действиям.
         </p>
         <h2 class="title-item">Требования к фотографиям</h2>
         <div class="image-required">
@@ -92,10 +91,7 @@
                 {{ form.as_p }}
                 <button class="button-load-diagnostic" type="submit">Отправить</button>
             </form>
-            {% if img_obj %}
-                <h3>Succesfully uploaded : {{img_obj.title}}</h3>
-                <img src="{{ img_obj.image.url}}" alt="connect">
-            {% endif %}
+
 
         </div>
     </section>

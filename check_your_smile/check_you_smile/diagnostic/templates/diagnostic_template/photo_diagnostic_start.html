@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Результаты исследования {% endblock %}
-
+{% block title %} Диагностика по фотогафии {% endblock %}
 
 {% block content %}
     <script>
         var element = document.querySelector('.main');
         element.classList.add('main-board');
-        element.classList.add('main-result');
+        element.classList.add('main-start_diagnostic')
 
     </script>
-    <h1 class="title title-board">Результаты исследвания</h1>
+
+    <h1 class="title title-board">Статус диагностики по фотографии</h1>
+
     {% if request.user.is_authenticated %}
-        <section  class="navi-menu side-bar side-bar-result side-bar-result-de " >
+        <section  class="navi-menu side-bar side-bar-diagnostic side-bar-start-diag " >
 
             <div class="item-menu">
                 <a class="link-navi-menu" href="{% url 'dashboard' %}">
@@ -50,17 +51,17 @@
 
         </section>
     {% endif %}
-    <section class="content content-result">
-        <div class="items-diagnostic items-diagnostic-result">
-            {% for diagnostic in diagnostics %}
-                <h2 class="title-item">{{diagnostic.type}}</h2>
-                {% if diagnostic.name == 'pho' %}
-                    <a class="link-diagnostic" href="list-result-type-photo/">Выбрать</a>
-                {% else %}
-                    <a class="link-diagnostic" href="#">Выбрать</a>
-                {% endif %}
+    <section class="content diagnostic-content diagnostic-start-content">
+        <div class="process-diagnostic">
+            <div class="item-process-diagnostic">
+                <p class="text-process-diagnostic">
+                    Процесс анализа данных успешно запущен.
+                    По завершеиню анализа данных рузльтата
+                    будет доступен в разделе результаты
+                    диагностика по фотографии.
+                </p>
+            </div>
 
-            {% endfor %}
         </div>
     </section>
 {% endblock %}

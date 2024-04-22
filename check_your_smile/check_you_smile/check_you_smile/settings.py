@@ -26,12 +26,17 @@ SECRET_KEY = 'django-insecure-8^-=kh+=#c(rs&*tf1p3$x2(h9#b3#cdij4^kjq-@c^idf@s5#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.1.204',
+    '192.168.1.19',
+    '127.0.0.1',
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'diagnostic.apps.DiagnosticConfig',
-    'result.apps.ResultConfig'
+    'result.apps.ResultConfig',
+    'channels',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +81,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'check_you_smile.wsgi.application'
+
 
 
 # Database
@@ -150,3 +158,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
 ]
+
+ASGI_APPLICATION = 'check_you_smile.asgi.application' # определяет местонахождение конфигурации маршрутизации корня
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'

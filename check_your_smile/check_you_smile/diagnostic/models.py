@@ -70,3 +70,7 @@ class PhotoDiagnostic(AllDiagnostic):
 
     def get_json(self):
         return self.result_diagnostic
+
+
+
+
