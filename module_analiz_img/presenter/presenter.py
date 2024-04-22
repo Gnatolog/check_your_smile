@@ -1,24 +1,19 @@
+
 from model import model
 from viewer import viewer
-import json
-from pathlib import Path
 
-
-# TODO Добавить эндпоинт по запуску процесса
 
 
 class Startprocession:
     """
-    Starting the processing process
+    Starting the process
     """
 
     # region field
 
-    def __init__(self, name_user: str, id_user: int, task_id: str,
+    def __init__(self, name_user: str,
                  path: str, name_file_frontal: str, name_file_lateral):
         self.name_user = name_user
-        self.id_user = id_user
-        self.task_id = task_id
         self.path = path
         self.name_file_frontal = name_file_frontal
         self.name_file_lateral = name_file_lateral
@@ -36,14 +31,6 @@ class Startprocession:
 
         # endregion
 
-        # region loadfile storage
-
-        # load_file = model.Loader()   # загрузка файла из хранилища
-
-        # endregion
-        print(self.path)
-        print(self.name_file_frontal)
-        print(self.name_file_lateral)
         # region Preprocessing
         preprocessing = model.Preprocessing(self.name_file_frontal,
                                             self.name_file_lateral,
@@ -81,22 +68,13 @@ class Startprocession:
 
         # region Interpretations analiz
 
-        interprit = model.Resulter(name_user=self.name_user, id_user=self.id_user,
+        interprit = model.Resulter(name_user=self.name_user,
                                    results=self.result_analiz, template=template)
         interprit.evaluation_data()
 
         # endregion
 
         self.evaluation_result = interprit.get_result()
-
-
-        # # region Save result
-        #
-        # result_file = Path.cwd() / 'result_diagnostic'/f'result_diagnostic_{self.name_user}.json'
-        # with open(result_file, 'w', encoding='utf-8') as fr:
-        #     json.dump(interprit.get_result(), fr, indent=2, ensure_ascii=False)
-        #
-        # # endregion
 
     def get_result(self):
         return self.evaluation_result

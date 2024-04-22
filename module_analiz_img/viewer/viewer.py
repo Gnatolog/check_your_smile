@@ -16,7 +16,6 @@ class Vieweresulter:
 
     def get_result_view(self):
         self.template['name'] = ''
-        self.template['id'] = ''
         self.template['result_front_vertical'] = ''
         self.template['result_front_hor'] = ''
         self.template['result_lateral_vert'] = ''
