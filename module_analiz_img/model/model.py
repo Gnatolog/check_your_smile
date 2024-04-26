@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from app.utils import start_tread
+from utils import start_tread
 
 
 class Worker:
