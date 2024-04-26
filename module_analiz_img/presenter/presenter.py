@@ -1,7 +1,5 @@
-
-from model import model
-from viewer import viewer
-
+from app.model import model
+from app.viewer import viewer
 
 
 class Startprocession:

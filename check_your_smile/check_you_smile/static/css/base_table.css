@@ -1,8 +1,165 @@
 @media(max-width:1023px){
+
+    .result-content {
+        width:unset;
+    }
     .navi-menu{
         gap:50px;
         flex-wrap:wrap;
         flex-direction: row;
+    }
+    .title-board{
+        font-size:36px;
+    }
+
+    .side-bar{
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: unset;
+        margin-top: 0;
+        margin-bottom:45px;
+        top:250px;
+        gap:10px;
+    }
+
+    .side-bar-diagnostic{
+        grid-column-start: 5;
+        grid-column-end: 7;
+        grid-row-start: 1;
+    }
+
+
+    .side-bar-result{
+        grid-column-start: 3;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 9;
+    }
+
+    .main-result{
+        height:unset;
+    }
+
+    .content-result {
+        margin: 25px;
+        grid-column-start: 2;
+        grid-column-end: 13;
+        grid-row-start: 2;
+        grid-row-end: unset;
+        height:unset;
+    }
+
+    .side-bar-icon{
+        width:80px;
+    }
+    .title-item{
+        font-size: 25px;
+    }
+
+    .text-item-diagnostic{
+        width:400px;
+        font-size:20px;
+        text-align:center;
+    }
+
+    .image-required{
+        margin-left:unset;
+        gap:45px;
+    }
+
+
+    .description-image{
+        grid-column-start: unset;
+        grid-row-start: 1;
+        text-align: -webkit-center;
+        width: 500px;
+    }
+
+
+
+    .item-image-diagnostic-button{
+        grid-row-start: 3;
+    }
+
+    .title-load-diagnostic {
+        width: 500px;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(2) > label {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(3) > label {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(4) > label {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 700;
 
     }
+
+    .button-load-diagnostic {
+        width: 220px;
+        margin-bottom:25px;
+    }
+
+    .forms-load-diagnostic{
+        margin-top: 20px;
+    }
+
+
+    .side-bar-start-diag{
+        margin-top: 0px;
+    }
+    .forms-load-diagnostic{
+        margin:100px;
+    }
+
+    .title-load-diagnostic {
+        width: 320px;
+    }
+
+    .form-diagnostic-load{
+        margin:15px;
+        margin-top:45px;
+    }
+
+    .img-item-diagnostic-img{
+        width:330px;
+    }
+
+    .items-result{
+        margin-bottom: 114px;
+    }
+
+    .result-forms{
+        width:470px;
+    }
+
+    .result-diagnostic{
+        width:unset;
+    }
+
+    .area-field{
+        width:unset;
+    }
+
+    .text-area-field{
+        width:unset;
+    }
+
+
 }
+
+
+
