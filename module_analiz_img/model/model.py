@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
-from utils import start_tread
-import threading
-from pathlib import Path
+from app.utils import start_tread
 
 
 class Worker:

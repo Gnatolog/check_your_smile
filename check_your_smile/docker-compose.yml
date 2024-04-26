@@ -1,0 +1,75 @@
+services:
+  db:
+    image: postgres:14.5
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+
+
+  rabbit:
+    image: rabbitmq:3.13.1-management
+    container_name: 'rabbitmq'
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  celery:
+    restart: always
+    build:
+      context: .
+    command: sh -c "cd check_you_smile/ && celery -A check_you_smile worker -l info"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - rabbit
+
+  web:
+    build: .
+    command: ["./wait-for-it.sh", "db:5432", "--",
+              "uwsgi", "--ini", "/code/config/uwsgi/uwsgi.ini",
+              ]
+    restart: always
+    volumes:
+      - .:/code
+    environment:
+      - DJANGO_SETTINGS_MODULE=check_you_smile.settings.prod
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
+      - rabbit
+
+  nginx:
+    image: nginx:1.25.5
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - .:/code
+    ports:
+      - "80:80"
+
+  analiz:
+    container_name: 'module_image'
+    build:
+      context: ../module_analiz_img
+    command: ["uvicorn", "main:app",
+              "--proxy-headers",
+              "--host", "0.0.0.0",
+              "--port", "8001"]
+    volumes:
+      - ./check_you_smile/media/user_img:/app/temp_storage/user_img
+    ports:
+      - 8000:8001
+
+
+
+

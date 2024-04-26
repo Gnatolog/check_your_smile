@@ -1,5 +1,42 @@
 @media(max-width:767px){
 
+    .diagnostic-content {
+        width: unset;
+    }
+
+    .content-result {
+        margin: 25px;
+        grid-column-start: 2;
+        grid-column-end: 13;
+        grid-row-start: 2;
+        grid-row-end: unset;
+        margin-bottom:150px;
+        margin-top:45px;
+    }
+
+
+    .main-result {
+        grid-template-columns: repeat(13, 1fr);
+    }
+
+    .title-item {
+
+        margin:unset;
+        margin-top:25px;
+        font-size:20px;
+    }
+
+    .main{
+        height:unset;
+        backdrop-filter: unset;
+    }
+
+    .diagnostic-start-content{
+        margin-bottom:250px;
+    }
+
+
+
     .form-field{
        align-items:center;
     }
@@ -12,14 +49,18 @@
     margin-top:10vh;
     }
 
+    .img-item-diagnostic-img{
+        width:300px;
+    }
+
     .form-field p{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
     }
 
     .navi-menu{
@@ -28,20 +69,266 @@
         flex-wrap:nowrap;
         flex-direction: column;
         height:unset;
+        margin-top:unset;
     }
 
     .title-board{
-        font-size: 35px;
+        grid-column-start: 7;
+        grid-column-end: unset;
+        font-size: 26px;
         margin-top: 30px;
+        margin-bottom:55px;
+        text-shadow: -3px 1px #551378;
+        grid-row-start: 1;
     }
 
     .text-board {
         margin-bottom: 45px;
     }
 
+    .text-item-diagnostic{
+        width: 300px;
+        font-size:16px;
+        margin:unset;
+    }
+    .side-bar  {
+        gap: 5vw;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        height: unset;
+        grid-column-start: 2;
+        grid-column-end: 12;
+        top: 85vh;
+
+
+    }
+    .side-bar-icon{
+        width:60px;
+    }
+
+    .forms-load-diagnostic {
+        margin: unset;
+        margin-bottom: 158px;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(2) {
+        gap: 10px;
+        flex-direction: column;
+
+    }
+    .form-diagnostic-load{
+        text-align:center;
+        margin:20px;
+    }
+
+    body > main > section.content.diagnostic-content
+    > div.forms-load-diagnostic > form > p:nth-child(3){
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    body > main > section.content.diagnostic-content
+    > div.forms-load-diagnostic > form > p:nth-child(4){
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .items-result{
+        gap:23px;
+        margin-bottom: 161px;
+
+    }
+
+    .result-forms {
+        width: 390px;
+    }
+
+    .field-result-form{
+        width:unset;
+    }
+
+    .titel-field-result-form{
+        align-items:center;
+    }
+    .text-field{
+        text-align: center;
+        width: 250px;
+        margin-bottom:unset;
+    }
+
+
+    .process-diagnostic{
+        width:350px;
+    }
+
+    .description-diagnostic{
+        margin-top:unset;
+    }
+
+    .text-image{
+        font-size:20px;
+    }
+
+
+
 }
 
-@media(max-width: 375px){
+@media(max-width: 424px){
+
+    .main-board{
+        grid-template-columns: auto;
+    }
+
+    .main-result{
+        grid-template-columns: auto;
+    }
+
+
+
+    .content {
+        grid-column-start: 4;
+    }
+
+    .content-result{
+        margin: 25px;
+        grid-column-end: unset;
+        grid-row-start: unset;
+        grid-row-end: 8;
+        margin-bottom:100%;
+    }
+
+    .result-diagnostic{
+        margin:10px;
+    }
+
+
+
+    .title-mobile{
+        margin-top:0px;
+    }
+
+    .result-forms {
+        width: 360px;
+        margin-bottom:100px;
+        margin-top:45px;
+        margin-left:8px;
+    }
+
+    .side-bar{
+        margin-bottom: 40px;
+    }
+    .side-bar-icon{
+        width:55px;
+    }
+    .img-item-diagnostic-img {
+        width: 280px;
+    }
+
+    .title-board {
+        font-size: 25px;
+        margin-bottom: 45px;
+        grid-column-start: 4;
+        grid-row-start: 1;
+    }
+
+    .title-item {
+        font-size: 20px;
+    }
+
+
+
+    .forms-load-diagnostic {
+        margin: 22px;
+        margin-bottom: 158px;
+    }
+
+    .button_send_pdf{
+        width:180px;
+    }
+
+    .text-area-field{
+        font-size:15px;
+    }
+
+    .title-form-field{
+        font-size:16px;
+    }
+
+    .process-diagnostic{
+        width:300px;
+    }
+    .title-process-diagnostic{
+        font-size:18px;
+    }
+    .text-process-diagnostic{
+        font-size:14px;
+    }
+    .text-item-diagnostic {
+        width: 260px;
+        font-size: 16px;
+    }
+
+
+
+
+
+}
+
+
+
+@media(max-width: 374px){
+
+    .diagnostic-start-content{
+        margin-bottom:100vh;
+    }
+
+    .main-board {
+        grid-template-columns: auto;
+    }
+
+    .content {
+        grid-column-start: 2;
+    }
+
+    .content-result{
+
+         margin: 25px;
+         grid-column-start: 2;
+         grid-column-end: unset;
+         grid-row-start: unset;
+         grid-row-end: 8;
+
+    }
+
+    .result-content{
+        grid-column-start: 3;
+    }
+
+
+
+
+    .img-item-diagnostic-img {
+        width: 250px;
+    }
+
+    .forms-load-diagnostic{
+        width:300px;
+        margin: 4px;
+        margin-bottom: 100px;
+    }
 
     .forms-registration{
         width: 300px;
@@ -50,6 +337,9 @@
     .title-board{
         font-size: 24px;
         margin-top: 30px;
+        font-size: 20px;
+        grid-column-start: 2;
+
     }
 
     .text-board {
@@ -62,9 +352,139 @@
 
     .navi-menu{
         gap:25px;
+
     }
     .icon-img{
         width:45vw;
     }
 
+    .side-bar-icon{
+        width:45px;
+    }
+
+
+
+    .title-item {
+        font-size: 19px;
+        margin-top:58px;
+
+    }
+
+   .title-result{
+        grid-column-start: 3;
+        grid-row-start: 1;
+    }
+
+    .text-item-diagnostic {
+        font-size:14px;
+        width:200px;
+
+    }
+
+    .title-load-diagnostic{
+        width:300px;
+    }
+
+    body > main > section.content.diagnostic-content
+    > div.forms-load-diagnostic > form > p:nth-child(2) > label {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 700;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(3) > label {
+    font-size: 16px;
+    }
+
+    #id_image_lateral::-webkit-file-upload-button {
+        font-size:16px;
+        width: 120px;
+        height: 33px;
+    }
+
+    .form-diagnostic-load{
+        gap:40px;
+    }
+
+    body > main > section.content.diagnostic-content >
+    div.forms-load-diagnostic > form > p:nth-child(4) > label {
+
+        font-size: 16px;
+    }
+
+    #id_image_frontal::-webkit-file-upload-button{
+        font-size:16px;
+        width: 120px;
+        height: 33px;
+    }
+
+    #id_image_lateral{
+        font-size:12px;
+    }
+
+    #id_image_frontal{
+        font-size:12px
+    }
+
+    .button-load-diagnostic{
+        width:130px;
+        font-size: 16px;
+        height:45px;
+    }
+
+    .example-img{
+        width: 250px;
+    }
+
+    .description-image{
+        margin-top:15px;
+
+    }
+    .result-forms {
+        margin-bottom:120px;
+        width: 270px;
+    }
+
+    .button_send_pdf{
+        width: 163px;
+        height: 45px;
+    }
+
+    .title-form-field{
+        font-size: 14px;
+    }
+
+    .text-area-field{
+        font-size: 12px;
+    }
+
+    .text-field{
+        font-size: 16px;
+    }
+
+    .result-diagnostic{
+        margin: 8px;
+    }
+
+
+    .title-result-form{
+        font-size: 16px;
+    }
+
+    .process-diagnostic{
+        width:270px;
+    }
+    .title-process-diagnostic{
+        font-size:16px;
+    }
+    .text-process-diagnostic{
+        font-size:12px;
+    }
+
+
+
 }
+
+
+
