@@ -31,4 +31,4 @@ ___
 * Для решения проблем раздачи статических файлов используется Nginx.
 * Для решения проблем с блокирующими операциями в рамках данного веб-приложения, подходит выполнение задач с применением брокера сообщений и воркера.
 * Для веб приложения Django  применён паттерн backend for frontend.
-![архитектура приложения](https://drive.google.com/file/d/1MSnmnBPZOuUhUcC1WjqvjVB9yIYaYxcM/view?usp=sharing)
+![архитектура приложения](https://drive.google.com/file/d/1MSnmnBPZOuUhUcC1WjqvjVB9yIYaYxcM/view)
