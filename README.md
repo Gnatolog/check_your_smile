@@ -23,5 +23,5 @@ ___
 * Воркер: Celery
 * База данных: PostgreSQL
 * API: FastApi
-Сборка приложения: Docker, Docker Compose
-Дизайн проекта: Pixso
+* Сборка приложения: Docker, Docker Compose
+* Дизайн проекта: Pixso
