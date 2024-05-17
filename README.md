@@ -1,4 +1,4 @@
-# [Check You Smile](http://91.186.198.225 "проверь свой прикус")
+# [Check Your Smile](http://91.186.198.225 "проверь свой прикус")
 ____
 ![Проверь свой прикус](https://b-stom.ru/upload/articles/111.jpg)
 
